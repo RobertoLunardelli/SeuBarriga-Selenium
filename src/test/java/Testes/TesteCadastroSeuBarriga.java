@@ -1,65 +1,58 @@
 package Testes;
 
-import Login.Login;
+import Iteracoes.Objetos;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+
 import static org.hamcrest.CoreMatchers.is;
 
-public class TesteCadastroSeuBarriga extends Login {
+public class TesteCadastroSeuBarriga extends Objetos {
+    @BeforeClass
+    public static void loginSetUp() {
+        loginSucesso();
+
+    }
 
     @Test
     public void cadastrarNomeComSucesso() {
-
-        driver.findElement(botaoContas).click();
-        driver.findElement(botaoAdicionar).click();
-        driver.findElement(nomeCadastrareAlterar).sendKeys(nomesAleatorios);
-        driver.findElement(botaoSalvar).click();
+        cadastrarNome();
         String mensagemSucesso = driver.findElement(By.xpath("/html/body/div[1]")).getText();
-        Assert.assertThat(mensagemSucesso,is("Conta adicionada com sucesso!"));
+        Assert.assertThat(mensagemSucesso, is("Conta adicionada com sucesso!"));
 
     }
 
     @Test
     public void cadastrarSemNomeParaRetornarErro() {
-        driver.findElement(botaoContas).click();
-        driver.findElement(botaoAdicionar).click();
-        driver.findElement(nomeCadastrareAlterar).sendKeys(vazio);
-        driver.findElement(botaoSalvar).click();;
+        cadastrarNomeVazioParaErro();
         String mensagemErro = driver.findElement(By.xpath("/html/body/div[1]")).getText();
-        Assert.assertThat(mensagemErro,is("Informe o nome da conta"));
+        Assert.assertThat(mensagemErro, is("Informe o nome da conta"));
 
     }
 
     @Test
     public void apresentarContasCadastradasNoListar() {
-        driver.findElement(botaoContas).click();
-        driver.findElement(botaoListar).click();
+        mostrarContasNoListar();
         String mensagemConta = driver.findElement(By.xpath("//*[@id=\"tabelaContas\"]/thead/tr/th[1]")).getText();
-        Assert.assertThat(mensagemConta,is("Conta"));
+        Assert.assertThat(mensagemConta, is("Conta"));
 
 
     }
 
     @Test
     public void alterarContaCadastrada() {
-        driver.findElement(botaoContas).click();
-        driver.findElement(botaoListar).click();
-        driver.findElement(botaoAlterar).click();
-        driver.findElement(nomeCadastrareAlterar).sendKeys(sobrenomeAleatorio);
-        driver.findElement(botaoSalvar).click();
+        alterarNomeDeConta();
         String mensagemAlterarComSucesso = driver.findElement(By.xpath("/html/body/div[1]")).getText();
-        Assert.assertThat(mensagemAlterarComSucesso,is("Conta alterada com sucesso!"));
+        Assert.assertThat(mensagemAlterarComSucesso, is("Conta alterada com sucesso!"));
 
     }
 
     @Test
     public void deletarContaCadastrada() {
-        driver.findElement(botaoContas).click();
-        driver.findElement(botaoListar).click();
-        driver.findElement(botaoDeletar).click();
+        excluirConta();
         String mensagemDeletarComSucesso = driver.findElement(By.xpath("/html/body/div[1]")).getText();
-        Assert.assertThat(mensagemDeletarComSucesso,is("Conta removida com sucesso!"));
+        Assert.assertThat(mensagemDeletarComSucesso, is("Conta removida com sucesso!"));
 
     }
 }

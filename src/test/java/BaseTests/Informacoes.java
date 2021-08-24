@@ -1,11 +1,9 @@
 package BaseTests;
 
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import static Login.Login.driver;
+import static Iteracoes.Objetos.driver;
+
 
 public class Informacoes {
     public static String url = "https://seubarriga.wcaquino.me/login";
@@ -39,4 +37,5 @@ public class Informacoes {
     public static By botaoPago = By.xpath("/html/body/div[2]/form/div[3]/div[3]/div/label[1]");
     public static By botaoMovimentacaoSalvar = By.xpath("/html/body/div[2]/form/div[4]/button");
     public static By resumoMensal = By.xpath("//*[@id=\"navbar\"]/ul/li[4]/a");
+
 }
