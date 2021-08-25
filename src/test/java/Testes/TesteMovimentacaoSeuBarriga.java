@@ -1,27 +1,33 @@
 package Testes;
 
-import Iteracoes.Objetos;
+import Interacoes.Interacoes;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.hamcrest.CoreMatchers.is;
 
-public class TesteMovimentacaoSeuBarriga extends Objetos {
+public class TesteMovimentacaoSeuBarriga extends Interacoes {
+
+    @BeforeClass
+    public static void loginSetUp(){
+        loginSucesso();
+
+    }
 
     @Test
     public void movimentarComContaCadastrada() {
+        cadastrarNome();
         movimentarConta();
-        String movimentacaoSucesso = driver.findElement(By.xpath("/html/body/div[1]")).getText();
         Assert.assertThat(movimentacaoSucesso, is("Movimentação adicionada com sucesso!"));
 
     }
 
     @Test
     public void validarMovimentacaoNoResumoMensal() {
-        driver.findElement(resumoMensal).click();
-        String validarMovimentacao = driver.findElement(By.xpath("//*[@id=\"tabelaExtrato\"]/tbody/tr/td[1]")).getText();
+        resumoMensal();
         Assert.assertThat(validarMovimentacao, is("Pagamento"));
     }
 
