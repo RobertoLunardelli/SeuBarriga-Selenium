@@ -1,6 +1,6 @@
 # SeuBarriga-Selenium
 ## Sobre
-Testes na Api SeuBarriga para ampliar o conhecimento de Selenium
+Testes SeuBarriga para ampliar o conhecimento de Selenium
 ## Tecnologias Utilizadas
 - Java Jdk 8
 - Selenium 3.141.59
